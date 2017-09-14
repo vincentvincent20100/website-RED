@@ -1,31 +1,550 @@
-body{text-align: center;}
-/* menu */
-nav li{
-  display: inline;
-  list-style-type: none;
-  background-color: #E6E6E6;
-  padding: 20px;
-  margin-bottom: 10px;
-  font-size: 20px;
+body{font-family: 'Open Sans', sans-serif; color: #333;margin: 0;background-color: #fefaf5;}
+h2{
+  color: #0089B0;
+  font-size: 2em;
+  font-weight: 700;
+  text-align: center;
 }
+p{margin: 0;}
+a{text-decoration:none; color:#333}
+a:hover{text-shadow: 2px 2px 5px #616a6c;}
+header div, h4{ text-align: center; font-size: 0.9em;}
+header{
+  box-shadow: 0 1px 2px rgba(0,0,0,0.4);
+  background-color: #0089b0;
+
+  }
+/* images */
+#en_tete{}
+#img-entete{width: 100%;}
+#img-pub{width: 230px}
+.imagePresentationArticle{max-width: 100%}
+
+/* avatar */
+.avatar{font-size: 14px;}
+.avatar p, .avatar a{color: #656565;}
+
+/* ----------------------------------------------------------------------------
+                      positionnement structure
+---------------------------------------------------------------------------- */
+#menu{width:50%; height: 54px; margin: 1px auto 4px auto; text-transform: uppercase;}
+main{display: table; background-color: #fefaf5;}
+.corps{display: table-cell;vertical-align:top; width: 70%; padding: 20px 15px;}
+/*.col-left{display: table-cell; width: 15%; padding-top: 20px; padding-left: 15px; padding-right: 20px;}
+.col-right{display: table-cell; vertical-align:top; min-width: 15%; padding-left: 20px; padding-right: 15px;}*/
+.col{display: table-cell; vertical-align:top; min-width: 15%; max-width: 170px; padding: 20px 35px;}
+
+/* ----------------------------------------------------------------------------
+                                    menu
+---------------------------------------------------------------------------- */
+
+#menu ul {
+ margin:0;
+ padding:0;
+ list-style-type:none;
+ }
+#menu li {
+ float:left; /* aligner les onglets qui seraient par défaut en colonne */
+ }
+#menu li a {
+  padding:15px 15px 1px 15px;
+  display:inline-block;
+  text-decoration:none; /*retirer le soulignement */
+   color: #fdfafa;
+ }
+ #menu li a:hover{
+   color: #00aad8;
+ }
+/*Pour faire disparaître les sous-items, on rajoute un display:none*/
+#menu ul li ul {display:none;}
+/*display:block qui va contrarier le display:none*/
+#menu ul li:hover ul {
+ display:block;
+ background-color: #00aad8;
+ opacity: 0.96;
+ }
+#menu ul li ul li a{
+  background-color: #00aad8;
+  color: #000;
+ }
+#menu li ul li a:hover{
+    color:#fff;
+}
+/*pour perdre la disposition en ligne qui était due au float:left, on va tout simplement déclarer un float:none*/
+#menu li:hover ul li {float:none;}
+/*ce qui est en dessous se trouve donc décalé vers le bas. Pour éviter ce désagrément, il faut attribuer une position:absolute*/
+#menu li ul {position:absolute;}
+#menu ul li ul a {padding: 10px;}
 /* liens */
-a:link{
+/*a:link{
   text-decoration:none;
   color:black;
+}*/
+
+
+.picto img{
+  float: left;
+  max-width: 35px; max-height: 35px;
+  margin-top: -12px;
 }
-/* images */
-#img-entete{height: 160px;}
-#img-pub{width: 230px}
-/* espacements */
-header{
-  margin-bottom: 35px;
+
+/* ----------------------------------------------------------------------------
+                                    bouton recherche
+---------------------------------------------------------------------------- */
+#zoneSearch{float: right;margin-right: 12px;}
+#zoneSearch2{
+  position: fixed;
+  top: 0;
+  right: 10px;
 }
-/* positionnement */
-main{display: table; background-color: #fefaf5}
-.col-left{display: table-cell; width: 230px; margin-right: 10px; padding-right: 20px;}
-.corps{display: table-cell;vertical-align:top}
-.col-right{display: table-cell;vertical-align:top; width: 230px; padding-left: 20px;}
-/* design */
-.widget{background-color: #E6E6E6; }
-.contentArticleWidget{height: 61px; overflow: hidden;}
-footer{background-color: #E6E6E6; }
+#btnSearch, #btnSearch2{margin: 5px 9px;height: 20px;}
+#inputSearch, #inputSearch2{width: 200px;display: none;}
+#submitSearch, #submitSearch2{display: none;}
+/* ----------------------------------------------------------------------------
+                                    page recherche
+---------------------------------------------------------------------------- */
+#rechercheTapee{
+  font-size: 1.65em;
+}
+#rechercheTapee span{
+  font-weight: 600;
+  }
+#nbrResults{
+  font-weight: 700;
+}
+.blocResultSearch{
+  background-color: #fff;
+  padding: 11px;
+  border: 1px solid #e7e7e7;
+}
+.imgResultSearch{
+  float: left; padding: 0px 20px 5px 0px;
+}
+.headerResultSearch{}
+.titreResultSearch{
+  font-size: 1.3em;
+}
+
+.dateResultSearch{  color: #b8b8a3; font-size: 0.8em;}
+.catResultSearch{
+  background: #27ae60;
+  color: #fff;
+  text-align: center;
+}
+.txtResultSearch{
+  clear: left;
+}
+.txtResultSearch img{display: none;}
+/* ----------------------------------------------------------------------------
+                              colonne droite
+---------------------------------------------------------------------------- */
+.col-left img{
+  width: 170px; margin-top: 30px;box-shadow: 4px 6px 0px #aaa;
+}
+/* ----------------------------------------------------------------------------
+                              colonne droite
+---------------------------------------------------------------------------- */
+/*.widget{background-color: #E6E6E6; }*/
+.artCol{
+  margin: 10px 0;
+}
+.artCol a{
+  text-align: center;
+  text-decoration: none;
+}
+.imgArtCol{
+  width: 100%
+}
+.titleArtCol{
+  border-bottom: 1px solid #e7e7e7;
+  margin: 0 0 0 0;
+  padding: 5px 10px 5px 10px;
+  color: #222;
+  background: #fafafa;
+  font-size: 0.68em;
+  font-weight: bold;
+}
+/* ----------------------------------------------------------------------------
+                              footer
+---------------------------------------------------------------------------- */
+footer{background-color: #E6E6E6; text-align: center;}
+#formulaireIdentification2{cursor: pointer;}
+#formulaireIdentification2:hover{text-shadow: 2px 2px 5px #616a6c;}
+
+/* ----------------------------------------------------------------------------
+                            page accueil
+---------------------------------------------------------------------------- */
+.corpsAccueil{
+  width: 80%;
+  margin: auto;
+}
+
+.blocAccueil{display: table;}
+.blocArticleAcc{
+  display: table-cell;
+  background-color: #fff;
+  padding: 1px 2px;
+}
+.blocArticleAcc img{
+  width: 100%;
+}
+.titleBlocAcc{
+  margin: -74px 0px 3px 20px;
+  font-size: 1.7em;
+  font-weight: bold;
+  color: #fff;
+}
+.titleAcc{
+  margin: 0 0 0 11px;
+  color: #fff;
+  font-weight: bold;
+
+}
+/* ----------------------------------------------------------------------------
+                              page actu
+---------------------------------------------------------------------------- */
+.blocArticle{
+  display: table;
+  background-color: #fff;
+  padding: 6px;
+  border: 1px solid #e7e7e7;
+}
+.imgArticle{
+  display: table-cell;
+}
+.content{max-height: 45px; overflow: hidden;}
+.catArticle{
+  background: #27ae60; color:#fff; text-align: center; margin: 6px 0 0 0;font-size: 0.9em;
+}
+.txtArticle, .txtArticleCat{
+  display: table-cell; vertical-align: top;
+  width: 66%; padding: 0px 20px;
+}
+.txtArticleCat img{
+  width: 100%;
+  height: 100%;
+}
+.txtArticle p{
+  margin: 15px 0px 0px 0px;
+  max-height: 39px; overflow: hidden;
+}
+.txtArticle .dateArticle{
+  color: #b8b8a3; font-size: 0.8em;
+}
+.txtArticle .title, .txtArticleCat .title{
+  margin: 12px;
+  font-size: 1.3em; font-weight: bold;}
+.annexeArticle{
+  display: table-cell; vertical-align: top;
+  padding: 0px 20px;
+  color: #b8b8a3; font-size: 0.8em;
+  text-align: center;
+}
+.btnLire{
+  width: 87px;
+  padding: 11px 19px; margin-top: 48px;
+  border-radius: 6px;
+  background: #0086aa;
+  color: #fff;
+  font-size: 1.1em;
+  text-shadow: 4px 4px 8px black;
+}
+.btnLire:hover{text-shadow: 2px 2px 8px #b8b8a3;}
+.h{display: none;}
+/* ----------------------------------------------------------------------------
+                              page catégorie
+---------------------------------------------------------------------------- */
+.imgArticleCat{
+  display: table-cell;
+  max-width: 300px; max-height: 100px; overflow: hidden;
+}
+.txtArticleCat p{
+  margin: 15px 0px 0px 0px;
+}
+.contentCat{max-height: 138px; overflow: hidden;}
+.btnLireCat{
+  width: 82px;
+  padding: 2px 9px;
+  border-radius: 6px;
+  background: #0086aa;
+  color: #fff;
+  font-size: 0.9em;
+  float: right;
+  text-shadow: 4px 4px 8px black;
+}
+.dateArticleCat{
+  color: #b8b8a3; font-size: 0.8em;
+}
+/* ----------------------------------------------------------------------------
+                              page article
+---------------------------------------------------------------------------- */
+.blocArticleSolo{
+  background-color: #fff;
+  padding: 6px;
+  border: 1px solid #e7e7e7;
+}
+.catArticleSolo{
+  background: #27ae60; color:#fff; text-align: center; margin: 6px 0 0 0;
+  margin: -23px -16px 0px 0;
+  padding: 6px 24px;
+  float: right;
+
+}
+.dateSolo{
+  color: #b8b8a3; font-size: 0.8em;
+  margin: 6px 0px 6px 16px;
+}
+.imagePresentationArticle{height: 100px; float: left;}
+.blocArticleSolo h1{
+  clear: both;
+  font-size: 1.3em;
+  margin: 6px 0px 6px 16px;
+}
+.blocArticleSolo img{
+  width: 100%;
+  height: 100%;
+  margin: 5px 0px;
+}
+
+
+/* ----------------------------------------------------------------------------
+                              carte (google map)
+---------------------------------------------------------------------------- */
+#map {
+ height: 400px;
+ width: 100%;
+}
+/*google map*/
+#floating-panel {
+  position: absolute;
+  top: 10px;
+  left: 25%;
+  z-index: 5;
+  background-color: #fff;
+  padding: 5px;
+  border: 1px solid #999;
+  text-align: center;
+  font-family: 'Roboto','sans-serif';
+  line-height: 30px;
+  padding-left: 10px;
+}
+/* ----------------------------------------------------------------------------
+                              pop-up newsletter
+---------------------------------------------------------------------------- */
+#divPopUps{
+  position: fixed;
+  bottom: 1px;
+  right: 1px;
+}
+#divPopUp{
+  z-index: 5;
+  background-color: #e9e9e9;
+  padding: 5px;
+  border: 5px solid #0089b0;
+  text-align: center;
+  font-family: 'Roboto','sans-serif';
+  line-height: 30px;
+  padding-left: 10px;
+}
+#divPopUp2{
+  z-index: 5;
+  background-color: #e9e9e9;
+  padding: 5px;
+  border: 5px solid #3b5998;
+  text-align: center;
+  font-family: 'Roboto','sans-serif';
+  line-height: 30px;
+  padding-left: 10px;
+}
+#widgetFbPopup{display: none;}
+
+/* ----------------------------------------------------------------------------
+                      formulaire connexion tableau de bord
+---------------------------------------------------------------------------- */
+#formConnexion{
+  display: none;
+  position: fixed;
+  bottom: 82px;
+  left: 40%;
+  z-index: 5;
+  background-color: #eee;
+  padding: 30px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  text-align: center;
+  line-height: 30px;
+}
+#formConnexion legend{width: 100%;font-size: 1.4em;padding-bottom: 10px;}
+#formConnexion input[type="text"] {
+  width: 75%;
+  padding: 8px 10px;
+  border: 1px solid #787676;
+  border-bottom-color: #d8d8d8;
+  border-right-color: #d8d8d8;
+  border-radius: 2px;
+  background: #fff;
+  color: #888;
+}
+#formConnexion #password {
+  width: 53%;
+  padding: 8px 10px;
+  border: 1px solid #787676;
+  border-bottom-color: #d8d8d8;
+  border-right-color: #d8d8d8;
+  border-radius: 2px;
+  background: #fff;
+  color: #888;
+}
+#formConnexion .unmaski{ /*bouton démasquer mot de passe saisi*/
+  padding: 0px 4px;
+  border-radius: 4px;
+  vertical-align: bottom;
+}
+#formConnexion .croix{ /* bouton fermeture */
+  position: fixed;
+  margin: -30px 2px 0px 106px;
+  border: 1px solid transparent;
+  background: transparent;
+  cursor: pointer;
+}
+#formConnexion .valider {
+  width: 176px;
+  margin: 8px 0 0 0;
+  padding: 10px 16px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  background: #428bca;
+  color: #fff;
+  font-size: 1.1em;
+  cursor: pointer;
+}
+/* ----------------------------------------------------------------------------
+                            style formulaire
+---------------------------------------------------------------------------- */
+/*input[type="text"] {
+  width: 250px;
+  padding: 4px 12px;
+  border: 1px solid #000;
+  border-bottom-color: #d8d8d8;
+  border-right-color: #d8d8d8;
+  border-radius: 4px;
+  background: #edf5f9;
+  color: #888;
+}*/
+input[type="number"] {
+  width: 60px;
+  padding: 0px 12px;
+  border: 1px solid #000;
+  border-bottom-color: #d8d8d8;
+  border-right-color: #d8d8d8;
+  border-radius: 35px;
+  background: #edf5f9;
+  color: #888;
+}
+input[type="color"] {
+  width: 23px;
+  padding: 0px 0px;
+  border: 1px solid #000;
+  border-bottom-color: #d8d8d8;
+  border-right-color: #d8d8d8;
+  border-radius: 4px;
+  background: #edf5f9;
+  color: #888;
+}
+/*button {
+  width: 60px;
+  padding: 2px 0px;
+  border-bottom-color: #d8d8d8;
+  border-right-color: #d8d8d8;
+  border-radius: 4px;
+  background: #edf5f9;
+  color: #888;
+}*/
+select {
+  width: 90px;
+  padding: 0px 12px;
+  border: 1px solid #000;
+  border-bottom-color: #d8d8d8;
+  border-right-color: #d8d8d8;
+  border-radius: 35px;
+  background: #edf5f9;
+  color: #888;
+}
+.formu{
+  padding-top: 10px;
+}
+input[type="search"]{
+  vertical-align: top;
+  padding: 8px 0px 8px 14px;
+  border: 1px solid #000;
+  border-bottom-color: #d8d8d8;
+  border-right-color: #d8d8d8;
+  border-radius: 4px;
+  background: #efefef;
+  color: #888;
+}
+#submitSearch,#submitSearch2 {
+  width: 48px;
+  padding: 2px 0px;
+  border-bottom-color: #d8d8d8;
+  border-right-color: #d8d8d8;
+  border-radius: 4px;
+  background: #edf5f9;
+  color: #888;
+}
+
+/* ----------------------------------------------------------------------------
+                            bouton réseaux sociaux
+---------------------------------------------------------------------------- */
+.blocBtnShare{
+  float: right;
+  text-align: center;
+}
+.btnShare{
+  margin: 5px 10px
+}
+
+
+
+/* ----------------------------------------------------------------------------
+                            responsive design
+---------------------------------------------------------------------------- */
+
+@media screen and (max-width :1470px){
+  #menu{width: 60%;}
+}
+@media screen and (max-width :1240px){
+  #menu{width: 65%;}
+}
+@media screen and (max-width :1135px){
+  #menu{width: 75%;}
+}
+@media screen and (max-width :1100px){
+  #menu{width: 85%;}
+  #inputSearch{width: 130px;}
+  .col-left{display: none;}
+}
+@media screen and (max-width :930px){
+  #menu{text-transform: lowercase;}
+}
+@media screen and (max-width :850px){
+  #zoneSearch{display: none;}
+  #btnSearch2{background-color: #ffffff4d;padding: 3px 3px;border-radius: 4px;}
+}
+@media screen and (max-width :760px){
+  .corps, .col-right{display: block;}
+  .corps{width: 100%}
+  .col{max-width: 100%;
+padding: 0;margin: 0px 5%;}
+  .artCol{display: inline-block;width: 180px;margin: 1px 1px;}
+  .picto img{display: none;}
+  #menu{width: 94%;height: 32px;}
+  #menu li a{padding: 2px 15px 0px 15px;}
+  #menu ul li ul a{padding: 5px;}
+}
+@media screen and (max-width :610px){
+  #menu{width: 100%;height: 54px;}
+}
+@media screen and (max-width :440px){
+  .blocArticleAcc{display: block;}
+}

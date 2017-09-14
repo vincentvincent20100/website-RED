@@ -1,44 +1,73 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <link rel="stylesheet" href="css/master.css">
-    <title>Réservation en direct</title>
-  </head>
-  <body>
-    <header>
-      <img id="img-entete" src="img/entete.png" alt="">
-      <nav>
-        <ul>
-          <li><a href="#">Accueil</a></li>
-          <li><a href="pageActu.php">Actualités</a></li>
-          <li><a href="#">Adhésion FairBooking</a></li>
-          <li><a href="#">RED Académie</a></li>
-          <li><a href="#">Notre réseau de partenaires</a></li>
-          <li><a href="#">Boutique</a></li>
-        </ul>
-      </nav>
-    </header>
-    <main>
-      <div class="col-left">
-        <img id="img-pub" src="img/banniere-pub.png" alt="hotel de luxe">
-      </div>
-      <div class="corps">
-        <p>Réservation en Direct ?</p>
-        <p>Fédérer les hébergeurs professionnels par l’intermédiaire d’une campagne de sensibilisation pour redonner du poids à leur parole, face aux grands distributeurs en ligne.
-        Créer de véritables outils pour permettre aux hôteliers d’exister à nouveau par eux-mêmes en reprenant la main sur leur distribution. Ce premier outil est Fairbooking, une plate forme éthique de mise en relation entre les consommateurs et les hôteliers.
-        Permettre aux consommateurs de bénéficier des meilleures prestations en se mettant en contact direct avec l’hôtelier. Consommateurs ! Fairbooking vous permet d’entrer en contact direct avec des hôteliers vous proposant des offres dédiées (que vous ne trouverez qu’en les contactant en direct)
-        </p>
-      </div>
-      <div class="col-right">
-        <div class="widget">
-          <p>Derniers articles</p>
-        </div>
-        <div class="widget">
-          <p>Derniers posts facebook</p>
-        </div>
-      </div>
-    </main>
-    <footer><span>Mentions légales - </span> <a href="admin.php"> Administration du site</a></footer>
-  </body>
-</html>
+<?php
+$title = "Actualité";
+include "frame/header.php";
+include "frame/colLeft.php";
+?>
+<div class="corpsAccueil">
+  <h2>Actualité du moment</h2>
+
+  <div class="blocAccueil3">
+    <div class='blocArticleAcc'>
+      <a href="pageCooperative.php"><img src='img/visuel/cooperative.jpg'></a>
+    </div>
+  </div>
+  <div class="blocAccueil">
+    <?php
+
+    $selection=$connect->query('SELECT * FROM article INNER JOIN image ON article.image_article = image.id_image WHERE categorie_article="Hotel" LIMIT 1');
+    $r=$selection->fetch(PDO::FETCH_OBJ);
+    echo "
+    <div class='blocArticleAcc'>
+    <img src='$r->url''>
+    <p class='titleBlocAcc'>Hotel à la Une</p>
+    <p class='titleAcc'>$r->titre_article</p>
+    </div>
+    <br>
+    ";
+    $selection=$connect->query('SELECT * FROM article INNER JOIN image ON article.image_article = image.id_image WHERE categorie_article="Hotel" LIMIT 1');
+    $r=$selection->fetch(PDO::FETCH_OBJ);
+    echo "
+    <div class='blocArticleAcc'>
+    <img src='$r->url''>
+    <p class='titleBlocAcc'>Info à la Une</p>
+    <p class='titleAcc'>$r->titre_article</p>
+    </div>
+    <br>
+    ";
+
+    ?>
+  </div>
+  <h2>Nous proposons</h2>
+  <div class="blocAccueil2">
+    <div class='blocArticleAcc'>
+      <img src='img/visuel/carte-de-visite-fairbooker.jpg'>
+    </div>
+    <div class='blocArticleAcc'>
+      <a href="pageFormation.php"><img src='img/visuel/REDacademie.png'></a>
+    </div>
+  </div>
+  <h2>Réservation en Direct ?</h2>
+  <p>Fairbooking est édité par l'association Réservation en Direct. Le but de cette association est de fédérer les hébergeurs professionnels face aux grands distributeurs en ligne.
+  <br>Grace à Fairbooking les hoteliers ne paient pas de commission sur les réservation à un intermédiaire.
+  <br>Fairbooking permet aux consommateurs de bénéficier des meilleures prestations en se mettant en contact direct avec l’hôtelier.
+
+  </p>
+
+</div>
+
+
+<?php
+include "frame/colRight.php";
+include "frame/footer.php";
+/*
+stockage fichier txt
+*/
+
+// // 1 : on ouvre le fichier
+// $monfichier = fopen('articles.txt', 'r+');
+// // 2 : on fera ici nos opérations sur le fichier...
+// $ligne = fgets($monfichier);
+// // 3 : quand on a fini de l'utiliser, on ferme le fichier
+// fclose($monfichier);
+// echo $ligne;
+?>

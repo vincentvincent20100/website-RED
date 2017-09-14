@@ -17,16 +17,14 @@ if (!empty($_FILES)){
 /* insérer article en BDD */
 if (!empty($_POST["titre"]) && !empty($_POST["contenu"]) && !empty($_POST["categorie"])) {
   $connect->exec("INSERT INTO article (titre_article, contenu_article, date_article, categorie_article, image_article)
-  VALUES ('".$_POST["titre"]."', '".$_POST["contenu"]."', now(), '".$_POST["categorie"]."', (SELECT id_image FROM image WHERE url='http://localhost/MesProjets/code-resaendirect/img/$newName'))")
-  // VALUES ('".$_POST["titre"]."', '".$_POST["contenu"]."', now(), '".$_POST["categorie"]."', '')")
+  VALUES ('".$_POST["titre"]."', '".$_POST["contenu"]."', now(), '".$_POST["categorie"]."', (SELECT id_image FROM image WHERE url='http://localhost/MesProjets/code-resaendirect/img/$newName'))");
+  header('Location:admin-article-liste.php');
   ;
 }
-
-
-
-
-
 ?>
+
+
+
 <h2>Ajouter une catégorie </h2>
 <form action="" method="post">
   <label for="libelle">Titre</label><input type="text" name="libelle"><br>
@@ -73,68 +71,9 @@ $selection1 = $connect->query("SELECT * FROM categorie_article");
 
 
 
-  <table id="beginTable">
-    <figcaption><h2>Tous les articles</h2></figcaption>
-    <thead>
-      <th><td>Date</td><td>Catégorie</td><td>Titre</td><td>Image</td><td>Contenu</td><td>Action</td></th>
-    </thead>
-    <tbody>
-
-        <?php
-        $selection=$connect->query('SELECT * FROM article LEFT JOIN image ON article.image_article = image.id_image');
-        // $selection=$connect->query('SELECT * FROM article');
-        while ($r=$selection->fetch(PDO::FETCH_OBJ)) {
-          /*tant que il ya qqch dans $r, $r sera le resulat sous forme d'objet,
-          fletch c'est du tri de donnée, ici il transforme le resultat en objet */
-          echo "<tr id='$r->id'><td>$r->id</td>
-          <td>$r->date_article</td>
-          <td>$r->categorie_article</td>
-          <td>$r->titre_article</td>
-          <td><img src='$r->url' width='100px'></td>
-          <td class='tdContenu'>$r->contenu_article</td>
-          <td><a href='form/modify.php?numArticle=$r->id'><button>Modifier</button></a></td>
-          <td><a href='form/delete.php?numArticle=$r->id'><button>Supprimer</button></a></td>
-          <td><input type='button' onclick='modifyArticle($r->id, \"$r->date_article\", \"$r->titre_article\", \"$r->categorie_article\")' value='ModifierViaJS'></td></tr>";
-        }
-        ?>
-
-
-
 
 <script type="text/javascript">
-/* modification article */
-function modifyArticle(id, date, titre, categorie) {
-    alert('yeaaaaaaaaaaaaa'+id+" "+date+" "+titre+" "+categorie);
-  var formu = document.body.appendChild(document.createElement('form'));
-  formu.method = "post";
-  formu.action = "form/modifyViaJS.php";
-  var inputId = formu.appendChild(document.createElement('input'));
-  inputId.type = 'hidden';
-  inputId.name = 'id';
-  inputId.value = id;
-  var inputDate = formu.appendChild(document.createElement('input'));
-  inputDate.type = 'text';
-  inputDate.name = 'date';
-  inputDate.value = date;
-  var inputTitre = formu.appendChild(document.createElement('input'));
-  inputTitre.type = 'text';
-  inputTitre.name = 'titre';
-  inputTitre.value = titre;
-  var selectCategorie = formu.appendChild(document.createElement('select'));
-  selectCategorie.name = 'categorie';
-    var option1 = selectCategorie.appendChild(document.createElement('option'));
-    option1.value = categorie;
-    option1.innerText = categorie;
-    option1.selected = 'selected';
 
-    // var option2 = selectCategorie.appendChild(document.createElement('option'));
-    // option2.value = 'option2';
-    // option2.innerText = document.querySelector(".cat").innerText;
-
-  var inputBtn = formu.appendChild(document.createElement('input'));
-  inputBtn.type = 'submit';
-  inputBtn.value = 'Enregistrer';
-}
 
 /* modification catégorie */
 function modifycategory(id, lib) {

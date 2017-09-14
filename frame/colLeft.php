@@ -1,4 +1,5 @@
-<div class="col-left">
+<div class="col-left col">
+
 
   <?php
   $serveur="mysql:host=localhost; dbname=resaendirect-dev-code";
@@ -10,21 +11,30 @@ if (!empty($_GET['show'])) {
   $show = $_GET['show'];
   $id = $_GET['id'];
 
+
+// Modification état publication
   if ($show == 'true') {
-    $connect->exec("UPDATE image SET publier='oui' WHERE id = '".$id."'");
+    $connect->exec("UPDATE image SET publier='oui' WHERE id_image = '".$id."'");
   }else{
-    $connect->exec("UPDATE image SET publier='non' WHERE id = '".$id."'");
+    $connect->exec("UPDATE image SET publier='non' WHERE id_image = '".$id."'");
   }
+  header("Location: ../admin-annonce.php#ii$id");
+}
+// Modification Position
+if (!empty($_POST['position'])) {
+  $position = $_POST['position'];
+  $id_image= $_POST['id_image'];
+  $connect->exec("UPDATE image SET ordre='".$position."' WHERE id_image='".$id_image."'");
   header("Location: ../admin-annonce.php");
 }
-  $affichees = $connect->query("SELECT * FROM image WHERE publier = 'oui'");
+
+
+// Affichage des images publiées
+  $affichees = $connect->query("SELECT * FROM image WHERE publier = 'oui' ORDER BY ordre");
   while ($af=$affichees->fetch(PDO::FETCH_OBJ)) {
-    echo "<img src='$af->url' width='230px'>";
+    echo "<img src='$af->url'>";
   }
-// position :
-// créer le champ position dans la table image
-// créer un tableau
-// rataché à l'index du tableau la position définie
+
 
 
   ?>

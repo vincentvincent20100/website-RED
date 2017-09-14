@@ -1,0 +1,9 @@
+.image {
+    width: 125px;
+    max-height: 125px;
+}
+body{
+  font-family: 'Open Sans', sans-serif;
+  font-size: 14px;
+  font-weight: bold;
+}
